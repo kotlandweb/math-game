@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testinis puslapis</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greitas matematikos testas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Sveikas atvykęs!</h1>
-    <button id="btn">Paspausk mane</button>
-    <p id="text"></p>
+  <main class="wrap">
+    <section class="card">
+      <header class="card__header">
+        <h1>🧠 Greitas matematikos testas</h1>
+        <p class="muted">5 uždaviniai • be prisijungimų • veikia naršyklėje</p>
+      </header>
 
-    <script src="main.js"></script>
-</body>
-</html>
+      <div id="screen-start">
+        <label class="row">
+          Kiek uždavinių? 
+          <select id="count">
+            <option>5</option><option>10</option><option>15</option>
+          </select>
+        </label>
+
+        <label class="row">
+          Sunkumas:
+          <select id="difficulty">
+            <option value="easy">Lengva (1–10)</option>
+            <option value="med">Vidutinė (1–25)</option>
+            <option value="hard">Sunki (1–50)</option>
+          </select>
+        </label>
+
+        <button id="startBtn" class="btn primary">Pradėti</button>
+      </div>
+
+      <div id="screen-quiz" class="hidden">
+        <div class="progress">
+          <span id="progressText">1 / 5</span>
+          <span id="timer">00:00</span>
+        </div>
+
+        <div class="task">
+          <div id="expression" class="expression">3 + 4 = ?</div>
+          <input id="answer" class="input" type="number" inputmode="numeric" placeholder="Tavo atsakymas" />
+          <button id="submitBtn" class="btn">Tikrinti</button>
+        </div>
+
+        <p id="feedback" class="feedback"></p>
+      </div>
+
+      <div id="screen-end" class="hidden">
+        <h2>Rezultatas</h2>
+        <p><strong id="scoreText">5 / 5</strong></p>
+        <p class="muted" id="timeText">Laikas: 00:23</p>
+        <div class="row gap">
+          <button id="againBtn" class="btn">Dar kartą</button>
+          <button id="shareBtn" class="btn outline">Kopijuoti nuorodą</button>
+        </div>
+        <p class="muted small">Geriausias rezultatas šiame įrenginyje: <span id="bestScore">—</span></p>
+      </div>
+    </section>
+
+    <footer class="foot muted small">
+      Sukurta tik su HTML • CSS • JS • Saugo tik vietoje (LocalStorage)
