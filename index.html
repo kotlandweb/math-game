@@ -29,31 +29,31 @@
       <section class="download">
         <h3>Norite atsisiųsti programą?</h3>
         <p>Galite atsisiųsti ir pasitikrinti žinias bet kada, kai tik norėsite!</p>
-        <button id="downloadBtn" class="btn outline">Atsisiųsti</button>
-      </section>
-
-      <!-- QR kodas, kuris pasirodys paspaudus atsisiuntimo mygtuką -->
-      <section id="qrSection" class="hidden">
-        <h3>Atsisiuntimo nuoroda</h3>
-        <div id="qrCode"></div> <!-- Čia bus rodoma QR kodas -->
-        <a href="test.zip" download class="btn">Atsisiųsti</a>
+        <button id="downloadBtn" class="btn outline">Paspauskite čia</button>
+        <p id="text"></p> <!-- Čia pasirodys tekstas -->
       </section>
     </section>
   </main>
 
-  <!-- JavaScript kodas QR kodo sugeneravimui ir paspaudimo funkcijai -->
+  <!-- JavaScript kodas -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script>
-    document.getElementById('downloadBtn').addEventListener('click', function() {
-      // Paslėpti pradinę atsisiuntimo sekciją ir parodyti QR kodą
-      document.querySelector('.download').classList.add('hidden');
-      document.getElementById('qrSection').classList.remove('hidden');
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+        document.getElementById("text").textContent = "JavaScript veikia!";
+    });
 
-      // Sugeneruoti QR kodą su atsisiuntimo nuoroda
-      QRCode.toCanvas(document.getElementById('qrCode'), 'test.zip', function (error) {
-        if (error) console.error(error);
-        console.log('QR kodas sugeneruotas');
-      });
+    window.addEventListener('load', () => {
+      const snowContainer = document.querySelector('.snow');
+      
+      // Sumažinkime snaigių skaičių
+      for (let i = 0; i < 200; i++) { // Sumažinta iki 200 snaigių
+        let snowflake = document.createElement('div');
+        
+        // Atsitiktinis stilius snaigėms
+        snowflake.style.left = Math.random() * 100 + "%"; // Atsitiktinė pozicija
+        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s"; // Atsitiktinis greitis
+        snowContainer.appendChild(snowflake);
+      }
     });
   </script>
 </body>

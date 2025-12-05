@@ -37,6 +37,7 @@ body {
   position: absolute;
   background-color: white;
   border-radius: 50%;
+  opacity: 0.8; /* Padidiname skaidrumą, kad snaigės nebūtų per ryškios */
   animation: snow 10s linear infinite;
 }
 
@@ -51,14 +52,14 @@ body {
 
 /* Snaigių dydžių ir animacijos atnaujinimas */
 .snow div:nth-child(odd) {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   animation-duration: 8s; /* Snaigės krenta greičiau */
 }
 
 .snow div:nth-child(even) {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   animation-duration: 12s; /* Snaigės krenta lėčiau */
 }
 
