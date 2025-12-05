@@ -3,65 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Greitas matematikos testas</title>
+  <title>Mokymosi priemonė</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Snaigių efektas -->
+  <div class="snow"></div> <!-- Snaigių efektas -->
+
   <main class="wrap">
     <section class="card">
       <header class="card__header">
-        <h1> Greitas matematikos testas</h1>
-        <p class="muted">5 uždaviniai • be prisijungimų • veikia naršyklėje</p>
+        <h1>Programa PAVADINIMAS</h1>
+        <p class="muted">Patikrinkite savo žinias su matematikos uždaviniais, lengvai ir greitai!</p>
       </header>
 
-      <div id="screen-start">
-        <label class="row">
-          Kiek uždavinių? 
-          <select id="count">
-            <option>5</option><option>10</option><option>15</option>
-          </select>
-        </label>
+      <!-- Paaiškinimas apie programą -->
+      <section class="info">
+        <h2>Apie programą</h2>
+        <p>Šis matematikos testas padės jums patikrinti savo žinias įvairių sudėtingumo lygių uždaviniais. Pasirinkite uždavinio skaičių ir pradėkite testą tiesiogiai naršyklėje. Jokių prisijungimų nereikia ir viskas veikia be registracijos.</p>
+      </section>
 
-        <label class="row">
-          Sunkumas:
-          <select id="difficulty">
-            <option value="easy">Lengva (1–10)</option>
-            <option value="med">Vidutinė (1–25)</option>
-            <option value="hard">Sunki (1–50)</option>
-          </select>
-        </label>
+      <!-- Atsisiuntimo mygtukas -->
+      <section class="download">
+        <h3>Norite atsisiųsti programą?</h3>
+        <p>Galite atsisiųsti ir pasitikrinti žinias bet kada, kai tik norėsite!</p>
+        <button id="downloadBtn" class="btn outline">Atsisiųsti</button>
+      </section>
 
-        <button id="startBtn" class="btn primary">Pradėti</button>
-      </div>
-
-      <div id="screen-quiz" class="hidden">
-        <div class="progress">
-          <span id="progressText">1 / 5</span>
-          <span id="timer">00:00</span>
-        </div>
-
-        <div class="task">
-          <div id="expression" class="expression">3 + 4 = ?</div>
-          <input id="answer" class="input" type="number" inputmode="numeric" placeholder="Tavo atsakymas" />
-          <button id="submitBtn" class="btn">Tikrinti</button>
-        </div>
-
-        <p id="feedback" class="feedback"></p>
-      </div>
-
-      <div id="screen-end" class="hidden">
-        <h2>Rezultatas</h2>
-        <p><strong id="scoreText">5 / 5</strong></p>
-        <p class="muted" id="timeText">Laikas: 00:23</p>
-        <div class="row gap">
-          <button id="againBtn" class="btn">Dar kartą</button>
-          <button id="shareBtn" class="btn outline">Kopijuoti nuorodą</button>
-        </div>
-        <p class="muted small">Geriausias rezultatas šiame įrenginyje: <span id="bestScore">—</span></p>
-      </div>
+      <!-- QR kodas, kuris pasirodys paspaudus atsisiuntimo mygtuką -->
+      <section id="qrSection" class="hidden">
+        <h3>Atsisiuntimo nuoroda</h3>
+        <div id="qrCode"></div> <!-- Čia bus rodoma QR kodas -->
+        <a href="test.zip" download class="btn">Atsisiųsti</a>
+      </section>
     </section>
+  </main>
 
-    <footer class="foot muted small">
-      Sukurta tik su HTML • CSS • JS • Saugo tik vietoje (LocalStorage)
+  <!-- JavaScript kodas QR kodo sugeneravimui ir paspaudimo funkcijai -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      // Paslėpti pradinę atsisiuntimo sekciją ir parodyti QR kodą
+      document.querySelector('.download').classList.add('hidden');
+      document.getElementById('qrSection').classList.remove('hidden');
+
+      // Sugeneruoti QR kodą su atsisiuntimo nuoroda
+      QRCode.toCanvas(document.getElementById('qrCode'), 'test.zip', function (error) {
+        if (error) console.error(error);
+        console.log('QR kodas sugeneruotas');
+      });
+    });
+  </script>
+</body>
+</html>
