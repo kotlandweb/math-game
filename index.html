@@ -10,48 +10,44 @@
 </head>
 <body>
   <!-- Snaigių efektas -->
-  <div class="snow"></div> <!-- Snaigių efektas -->
+  <div class="snow"></div>
 
   <main class="wrap">
     <section class="card">
       <header class="card__header">
-        <h1>Programa PAVADINIMAS</h1>
-        <p class="muted">Patikrinkite savo žinias su matematikos uždaviniais, lengvai ir greitai!</p>
+        <h1>Programos pavadinimas</h1>
+        <p class="muted">Patikrinkite savo žinias spręsdami matematikos uždavinius lengvai ir greitai.</p>
       </header>
 
-      <!-- Paaiškinimas apie programą -->
       <section class="info">
         <h2>Apie programą</h2>
-        <p>Šis matematikos testas padės jums patikrinti savo žinias įvairių sudėtingumo lygių uždaviniais. Pasirinkite uždavinio skaičių ir pradėkite testą tiesiogiai naršyklėje. Jokių prisijungimų nereikia ir viskas veikia be registracijos.</p>
+        <p>
+          Šis matematikos testas padės patikrinti jūsų žinias sprendžiant įvairaus sudėtingumo uždavinius.
+          Pasirinkite užduočių skaičių ir pradėkite testą tiesiog naršyklėje.
+          Prisijungti nereikia, viskas veikia be registracijos.
+        </p>
       </section>
 
-      <!-- Atsisiuntimo mygtukas -->
       <section class="download">
-        <h3>Norite atsisiųsti programą?</h3>
-        <p>Galite atsisiųsti ir pasitikrinti žinias bet kada, kai tik norėsite!</p>
-        <button id="downloadBtn" class="btn outline">Paspauskite čia</button>
-        <p id="text"></p> <!-- Čia pasirodys tekstas -->
+        <h3>Pasiruošę pradėti?</h3>
+        <p>Spustelėkite mygtuką ir pereikite į užduočių puslapį.</p>
+        <button id="downloadBtn" class="btn outline">Pradėti testą</button>
       </section>
     </section>
   </main>
 
-  <!-- JavaScript kodas -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script>
     document.getElementById("downloadBtn").addEventListener("click", function () {
-        document.getElementById("text").textContent = "JavaScript veikia!";
+      window.location.href = "quiz.html";
     });
 
-    window.addEventListener('load', () => {
-      const snowContainer = document.querySelector('.snow');
-      
-      // Sumažinkime snaigių skaičių
-      for (let i = 0; i < 200; i++) { // Sumažinta iki 200 snaigių
-        let snowflake = document.createElement('div');
-        
-        // Atsitiktinis stilius snaigėms
-        snowflake.style.left = Math.random() * 100 + "%"; // Atsitiktinė pozicija
-        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s"; // Atsitiktinis greitis
+    window.addEventListener("load", () => {
+      const snowContainer = document.querySelector(".snow");
+
+      for (let i = 0; i < 200; i++) {
+        const snowflake = document.createElement("div");
+        snowflake.style.left = Math.random() * 100 + "%";
+        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
         snowContainer.appendChild(snowflake);
       }
     });
