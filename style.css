@@ -1,19 +1,28 @@
-/* Bazė */
+/* === Theme variables === */
 :root {
-  --bg: #0f172a;           /* tamsus fonas */
-  --card: #111827;         /* kortelės fonas */
-  --muted: #94a3b8;        /* prigesintas tekstas */
-  --ring: #334155;         /* rėmeliai */
-  --primary: #3b82f6;      /* mėlynas mygtukas */
-  --primary-2: #06b6d4;    /* cianas akcentui */
-  --text: #e2e8f0;         /* pagrindinis tekstas */
+  --bg: #0f172a;
+  --card: #111827;
+  --muted: #94a3b8;
+  --ring: #334155;
+  --primary: #3b82f6;
+  --primary-2: #06b6d4;
+  --text: #e2e8f0;
   --radius: 16px;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --btn-shadow: 0 10px 20px rgba(2, 132, 199, 0.25);
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+/* Box model reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Full height for layout and scroll */
+html, body {
+  height: 100%;
+}
+
+/* Global page layout */
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -26,48 +35,107 @@ body {
   padding: 20px 0;
 }
 
-/* Snaigių efektas */
+/* Main content container */
+.wrap {
+  width: min(1120px, 96vw);
+  padding: 16px 24px 28px;
+}
+
+/* Card container */
+.card {
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Headings */
+h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+/* Muted text */
+.muted {
+  color: var(--muted);
+}
+
+/* Smaller helper text */
+.small {
+  font-size: 14px;
+}
+
+/* Snow background layer (index page) */
 .snow {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Snaigės nesutrukdys vartotojo sąveikai su svetainės elementais */
-  z-index: -2; /* Snaigės bus po visu turiniu ir ne per tekstą */
+  pointer-events: none;
+  z-index: -2;
 }
 
+/* Individual snowflake */
 .snow div {
   position: absolute;
-  background-color: white;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, rgba(255,255,255,0.65) 55%, rgba(255,255,255,0.2) 75%, transparent 80%);
   border-radius: 50%;
-  opacity: 0.8; /* Padidiname skaidrumą, kad snaigės nebūtų per ryškios */
-  animation: snow 10s linear infinite;
+  opacity: 0.85;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.65),
+    0 0 14px rgba(147, 197, 253, 0.25);
+  animation: snow 12s linear infinite, twinkle 2.6s ease-in-out infinite;
+  filter: blur(0.2px);
 }
 
+/* Snow falling animation */
 @keyframes snow {
   0% {
     transform: translateY(-100px);
   }
   100% {
-    transform: translateY(120vh); /* Snaigės krenta per visą ekraną */
+    transform: translateY(120vh);
   }
 }
 
-/* Snaigių dydžių ir animacijos atnaujinimas */
+/* Snowflake sizes */
 .snow div:nth-child(odd) {
-  width: 8px;
-  height: 8px;
-  animation-duration: 8s; /* Snaigės krenta greičiau */
+  width: 6px;
+  height: 6px;
+  animation-duration: 9s;
 }
 
 .snow div:nth-child(even) {
   width: 12px;
   height: 12px;
-  animation-duration: 12s; /* Snaigės krenta lėčiau */
+  animation-duration: 14s;
 }
 
-/* Krentantys skaičiai */
+.snow div:nth-child(3n) {
+  width: 10px;
+  height: 10px;
+  animation-duration: 11s;
+  opacity: 0.7;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.55; filter: brightness(0.9); }
+  50% { opacity: 1; filter: brightness(1.15); }
+}
+
+/* Falling numbers background (quiz page) */
 .numbers {
   position: fixed;
   inset: 0;
@@ -75,6 +143,8 @@ body {
   z-index: -1;
   overflow: hidden;
 }
+
+/* Individual falling symbol */
 .numbers span {
   position: absolute;
   left: var(--x, 50%);
@@ -86,35 +156,33 @@ body {
   animation-delay: var(--delay, 0s);
   text-shadow: 0 6px 20px rgba(15, 23, 42, 0.35);
 }
+
+/* Falling numbers animation */
 @keyframes num-fall {
   to {
     transform: translateY(120vh);
   }
 }
 
-/* Kortelė / konteineris */
-.wrap { width: min(1120px, 96vw); padding: 16px 24px 28px; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--ring);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px;
-  z-index: 1; /* Užtikriname, kad kortelės turinys bus virš snaigių */
-  position: relative;
-  overflow: hidden;
+/* Row utilities */
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-h1 { margin: 0 0 8px; font-size: 28px; }
-h2 { margin: 0 0 6px; font-size: 22px; }
-.muted { color: var(--muted); }
-.small { font-size: 14px; }
+.row.gap {
+  gap: 10px;
+}
 
-.row { display: flex; gap: 12px; align-items: center; }
-.row.gap { gap: 10px; }
-.row.buttons { margin-top: 10px; }
+.row.buttons {
+  margin-top: 10px;
+}
 
-.input, input[type="number"], input[type="text"] {
+/* Inputs */
+.input,
+input[type="number"],
+input[type="text"] {
   width: 100%;
   background: #0b1220;
   border: 1px solid var(--ring);
@@ -124,6 +192,7 @@ h2 { margin: 0 0 6px; font-size: 22px; }
   font-size: 16px;
 }
 
+/* Selects */
 select {
   background: #0b1220;
   border: 1px solid var(--ring);
@@ -132,6 +201,7 @@ select {
   padding: 10px 12px;
 }
 
+/* Buttons */
 .btn {
   border: 1px solid color-mix(in srgb, var(--ring) 70%, transparent);
   background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
@@ -140,58 +210,107 @@ select {
   border-radius: 14px;
   cursor: pointer;
   font-weight: 700;
-  letter-spacing: .2px;
-  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease, border-color .16s ease;
-  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+  letter-spacing: 0.2px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease, border-color 0.16s ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
 }
+
+/* Button shine effect */
 .btn::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(120px 60px at var(--mx, 50%) -20px, rgba(255,255,255,.35), transparent 60%);
+  background: radial-gradient(120px 60px at var(--mx, 50%) -20px, rgba(255, 255, 255, 0.35), transparent 60%);
   opacity: 0;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
   pointer-events: none;
 }
-.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.btn:active { transform: translateY(1px); filter: brightness(.98); }
-.btn:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 70%, #fff 30%); outline-offset: 2px; }
-.btn:hover::after { opacity: 1; }
+
+/* Button hover/active/focus */
+.btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+
+.btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary) 70%, #fff 30%);
+  outline-offset: 2px;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+/* Primary button */
 .btn.primary {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
   border-color: color-mix(in srgb, var(--primary) 70%, #fff 30%);
   color: #fff;
   box-shadow: var(--btn-shadow);
 }
-.btn.primary:hover { box-shadow: 0 14px 26px rgba(2, 132, 199, 0.35); }
-.btn.primary:active { box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25); }
+
+.btn.primary:hover {
+  box-shadow: 0 14px 26px rgba(2, 132, 199, 0.35);
+}
+
+.btn.primary:active {
+  box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
+}
+
+/* Outline button */
 .btn.outline {
   background: transparent;
   border-color: color-mix(in srgb, var(--primary) 55%, var(--ring) 45%);
 }
-.btn.outline:hover { border-color: var(--primary); }
 
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: none;
-  }
-  .btn::after {
-    transition: none;
-  }
-  .correct-flash,
-  .wrong-flash,
-  .score-pop {
-    animation: none;
-  }
+.btn.outline:hover {
+  border-color: var(--primary);
 }
 
-.expression { font-size: 32px; text-align: center; margin: 14px 0; }
-.feedback { min-height: 24px; text-align: center; }
-.progress { display: flex; justify-content: space-between; margin-bottom: 8px; }
-#score { display: inline-block; }
+/* Question text */
+.expression {
+  font-size: 32px;
+  text-align: center;
+  margin: 14px 0;
+}
 
+/* Feedback area */
+.feedback {
+  min-height: 24px;
+  text-align: center;
+}
+
+/* Progress row (if used) */
+.progress {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* Score number */
+#score {
+  display: inline-block;
+}
+
+/* Utility to hide elements */
+.hidden {
+  display: none;
+}
+
+/* Footer helper */
+.foot {
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* Correct / wrong answer animations */
 .correct-flash {
   animation: correctFlash 480ms ease;
 }
@@ -210,64 +329,88 @@ select {
   100% { box-shadow: var(--shadow); }
 }
 
-@keyframes scorePop {
-  0% { transform: scale(1); color: var(--text); }
-  45% { transform: scale(1.35); color: #22c55e; }
-  100% { transform: scale(1); color: var(--text); }
-}
-
 @keyframes wrongFlash {
   0% { box-shadow: var(--shadow); }
   35% { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.45), 0 0 22px rgba(239, 68, 68, 0.28); }
   100% { box-shadow: var(--shadow); }
 }
 
-.hidden { display: none; }
-.foot { text-align: center; margin-top: 14px; }
+@keyframes scorePop {
+  0% { transform: scale(1); color: var(--text); }
+  45% { transform: scale(1.35); color: #22c55e; }
+  100% { transform: scale(1); color: var(--text); }
+}
 
-/* Rezultatų blokas */
+/* Results panel */
 .results {
   margin-top: 18px;
   padding: 16px;
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(2, 6, 23, 0.7));
   border: 1px solid color-mix(in srgb, var(--ring) 70%, transparent);
-  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
+
 .results__score {
   font-size: 18px;
   margin: 6px 0 8px;
   color: #e2e8f0;
 }
+
 .results__hint {
   margin: 0 0 12px;
   color: #93c5fd;
 }
+
 .results__list h3 {
   margin: 10px 0 8px;
   font-size: 16px;
   color: #cbd5f5;
 }
+
 .results__list {
   max-height: 42vh;
   overflow: auto;
   padding-right: 8px;
 }
+
+/* Mistakes list */
 #mistakes {
   line-height: 1.45;
   word-break: break-word;
 }
+
 .mistake-item {
   color: #dbeafe;
 }
+
 .mistake-user {
   color: #fb7185;
   font-weight: 700;
 }
+
 .mistake-correct {
   color: #4ade80;
   font-weight: 700;
 }
+
 .mistake-rule {
   color: #93c5fd;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+
+  .btn::after {
+    transition: none;
+  }
+
+  .correct-flash,
+  .wrong-flash,
+  .score-pop {
+    animation: none;
+  }
 }

@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
+  <!-- Pagrindiniai meta duomenys -->
   <meta charset="UTF-8">
   <title>Matematikos užduotys</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="numbers" aria-hidden="true"></div>
+  <!-- Fono skaičių efektas -->
+  <div class="numbers" aria-hidden="true"></div>
 
-<main class="wrap">
-  <section class="card">
-    <h1>Matematikos užduotys</h1>
+  <main class="wrap">
+    <section class="card">
+      <!-- Puslapio pavadinimas -->
+      <h1>Matematikos užduotys</h1>
 
-    <p class="small">
-      Taškai: <span id="score">0</span>
-    </p>
+      <!-- Taškų skaitiklis -->
+      <p class="small">
+        Taškai: <span id="score">0</span>
+      </p>
 
-    <p id="question" class="expression"></p>
+      <!-- Čia JS įrašo einamą užduotį -->
+      <p id="question" class="expression"></p>
 
-    <input
-      type="number"
-      id="answer"
-      class="input"
-      placeholder="Įvesk atsakymą"
-    >
+      <!-- Vartotojo atsakymo įvedimas -->
+      <input
+        type="number"
+        id="answer"
+        class="input"
+        placeholder="Įvesk atsakymą"
+      >
 
-    <div class="row gap buttons">
-      <button id="nextBtn" class="btn primary">Kitas</button>
-    </div>
-
-    <p id="result" class="feedback"></p>
-
-    <section id="resultScreen" class="hidden results">
-      <h2>Rezultatai</h2>
-      <p id="finalScore" class="results__score"></p>
-      <p id="repeatHint" class="results__hint"></p>
-      <div class="row gap">
-        <button id="fixMistakesBtn" class="btn primary hidden">Ištaisyti klaidas</button>
+      <!-- Mygtukas tikrina atsakymą ir pereina į kitą klausimą -->
+      <div class="row gap buttons">
+        <button id="nextBtn" class="btn primary">Kitas</button>
       </div>
-      <div class="results__list">
-        <h3>Klaidų peržiūra</h3>
-        <div id="mistakes"></div>
-      </div>
+
+      <!-- Pranešimų vieta (pvz., kai neįvestas atsakymas) -->
+      <p id="result" class="feedback"></p>
+
+      <!-- Rezultatų blokas (rodomas tik testo pabaigoje) -->
+      <section id="resultScreen" class="hidden results">
+        <h2>Rezultatai</h2>
+        <p id="finalScore" class="results__score"></p>
+        <p id="repeatHint" class="results__hint"></p>
+        <div class="row gap">
+          <button id="fixMistakesBtn" class="btn primary hidden">Ištaisyti klaidas</button>
+        </div>
+        <div class="results__list">
+          <h3>Klaidų peržiūra</h3>
+          <div id="mistakes"></div>
+        </div>
+      </section>
     </section>
-  </section>
-</main>
+  </main>
 
-<script src="quiz.js"></script>
+  <!-- Pagrindinė logika -->
+  <script src="quiz.js"></script>
 </body>
 </html>

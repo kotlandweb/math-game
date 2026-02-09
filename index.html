@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
+  <!-- Koduotė ir mobilus atvaizdavimas -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Puslapio pavadinimas -->
   <title>Mokymosi priemonė</title>
+  <!-- Naudojamas šriftas -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Bendras stilius -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Snaigių efektas -->
+  <!-- Snaigių fonas -->
   <div class="snow"></div>
 
+  <!-- Pagrindinis turinio konteineris -->
   <main class="wrap">
     <section class="card">
+      <!-- Puslapio antraštė -->
       <header class="card__header">
-        <h1>Programos pavadinimas</h1>
+        <h1>Matematikos mokymosi priemonė 3–4 klasių mokiniams </h1>
         <p class="muted">Patikrinkite savo žinias spręsdami matematikos uždavinius lengvai ir greitai.</p>
       </header>
 
+      <!-- Informacinis blokas -->
       <section class="info">
         <h2>Apie programą</h2>
         <p>
-          Šis matematikos testas padės patikrinti jūsų žinias sprendžiant įvairaus sudėtingumo uždavinius.
-          Pasirinkite užduočių skaičių ir pradėkite testą tiesiog naršyklėje.
+          Šis matematikos testas padės patikrinti jūsų žinias sprendžiant įvairaus sudėtingumo uždavinius,
+          pradėkite testą tiesiog naršyklėje.
           Prisijungti nereikia, viskas veikia be registracijos.
         </p>
       </section>
 
+      <!-- Perėjimo mygtukas -->
       <section class="download">
         <h3>Pasiruošę pradėti?</h3>
         <p>Spustelėkite mygtuką ir pereikite į užduočių puslapį.</p>
@@ -37,17 +45,29 @@
   </main>
 
   <script>
+    // Mygtukas perkelia į quiz puslapį.
     document.getElementById("downloadBtn").addEventListener("click", function () {
       window.location.href = "quiz.html";
     });
 
+    // Užkrovus puslapį sukuriamos snaigės.
     window.addEventListener("load", () => {
+      // Randame snaigių konteinerį (div su klase "snow").
       const snowContainer = document.querySelector(".snow");
+      // Jei konteinerio nėra, tiesiog išeiname.
+      if (!snowContainer) return;
 
+      // Sukuriame 200 snaigių.
       for (let i = 0; i < 200; i++) {
+        // Kiekviena snaigė yra atskiras div elementas.
         const snowflake = document.createElement("div");
+        // Atsitiktinė X pozicija.
         snowflake.style.left = Math.random() * 100 + "%";
+        // Atsitiktinis kritimo greitis.
         snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        // Neigiamas vėlinimas, kad snaigės būtų matomos iš karto.
+        snowflake.style.animationDelay = `-${Math.random() * 12}s`;
+        // Pridedame snaigę į konteinerį.
         snowContainer.appendChild(snowflake);
       }
     });
