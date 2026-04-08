@@ -20,16 +20,29 @@
         Taškai: <span id="score">0</span>
       </p>
 
+      <!-- Lygio pasirinkimas -->
+      <div class="row" style="margin:8px 0; align-items:center;">
+        <label for="levelSelect" class="small muted" style="margin-right:8px;">Lygis:</label>
+        <select id="levelSelect" class="input" style="width:auto; max-width:220px;">
+          <option value="all">Visi lygiai</option>
+          <option value="patenkinamas">Patenkinamas</option>
+          <option value="vidutinis" selected>Vidutinis</option>
+          <option value="aukstesnysis">Aukštesnysis</option>
+        </select>
+      </div>
+
       <!-- Čia JS įrašo einamą užduotį -->
       <p id="question" class="expression"></p>
 
-      <!-- Vartotojo atsakymo įvedimas -->
+      <!-- Vartotojo atsakymo įvedimas (tekstas, kad priimtų trupmenų formatus) -->
       <input
-        type="number"
+        type="text"
         id="answer"
         class="input"
-        placeholder="Įvesk atsakymą"
+        placeholder="Įvesk atsakymą (pvz. 1/3 arba 1--3)"
       >
+
+      <!-- (trupmenų pavyzdys pašalintas pagal prašymą) -->
 
       <!-- Mygtukas tikrina atsakymą ir pereina į kitą klausimą -->
       <div class="row gap buttons">

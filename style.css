@@ -74,8 +74,8 @@ h2 {
   font-size: 14px;
 }
 
-/* Snow background layer (index page) */
-.snow {
+/* Star background layer (index page) */
+.stars {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,49 +85,49 @@ h2 {
   z-index: -2;
 }
 
-/* Individual snowflake */
-.snow div {
+/* Individual star */
+.stars div {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle at 30% 30%, #ffffff, rgba(255,255,255,0.65) 55%, rgba(255,255,255,0.2) 75%, transparent 80%);
+  background: radial-gradient(circle at 30% 30%, #ffffff, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0.15) 75%, transparent 80%);
   border-radius: 50%;
-  opacity: 0.85;
+  opacity: 0.9;
   box-shadow:
-    0 0 6px rgba(255, 255, 255, 0.65),
-    0 0 14px rgba(147, 197, 253, 0.25);
-  animation: snow 12s linear infinite, twinkle 2.6s ease-in-out infinite;
+    0 0 8px rgba(255, 255, 255, 0.85),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  animation: float 12s linear infinite, twinkle 2.6s ease-in-out infinite;
   filter: blur(0.2px);
 }
 
-/* Snow falling animation */
-@keyframes snow {
+/* Star floating animation */
+@keyframes float {
   0% {
-    transform: translateY(-100px);
+    transform: translate(-10px, -10vh);
   }
   100% {
-    transform: translateY(120vh);
+    transform: translate(30px, 120vh);
   }
 }
 
-/* Snowflake sizes */
-.snow div:nth-child(odd) {
-  width: 6px;
-  height: 6px;
-  animation-duration: 9s;
+/* Star sizes */
+.stars div:nth-child(odd) {
+  width: 5px;
+  height: 5px;
+  animation-duration: 10s;
 }
 
-.snow div:nth-child(even) {
-  width: 12px;
-  height: 12px;
-  animation-duration: 14s;
+.stars div:nth-child(even) {
+  width: 11px;
+  height: 11px;
+  animation-duration: 15s;
 }
 
-.snow div:nth-child(3n) {
-  width: 10px;
-  height: 10px;
-  animation-duration: 11s;
-  opacity: 0.7;
+.stars div:nth-child(3n) {
+  width: 9px;
+  height: 9px;
+  animation-duration: 13s;
+  opacity: 0.75;
 }
 
 @keyframes twinkle {
@@ -396,6 +396,74 @@ select {
 
 .mistake-rule {
   color: #93c5fd;
+}
+
+/* Vertikali trupmena (pavyzdžių vizualizacija) */
+.fraction {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 6px;
+  font-weight: 700;
+}
+.fraction .num,
+.fraction .den {
+  display: block;
+  padding: 0 6px;
+  line-height: 1.1;
+}
+.fraction .bar {
+  display: block;
+  width: 100%;
+  border-top: 2px solid currentColor;
+  margin: 2px 0;
+  height: 0;
+}
+
+/* Full-width mistake summary banner */
+#mistakeSummaryBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, rgba(239,68,68,0.95), rgba(234,88,12,0.95));
+  color: white;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Shift page content down when banner is visible */
+.has-banner {
+  padding-top: 56px;
+}
+
+/* Puslapio paryškinimas, kai yra klaidų */
+.has-mistake .card {
+  border-color: rgba(239,68,68,0.85);
+  box-shadow: 0 18px 40px rgba(239,68,68,0.12), 0 8px 18px rgba(0,0,0,0.35);
+  transform: translateY(-2px);
+  transition: box-shadow 220ms ease, border-color 220ms ease, transform 120ms ease;
+}
+
+.mistake-item {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(234,88,12,0.03));
+  border-left: 4px solid rgba(239,68,68,0.85);
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Pulse highlight for newly added mistakes */
+.mistake-pulse {
+  animation: mistakePulse 900ms ease-out;
+}
+@keyframes mistakePulse {
+  0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(239,68,68,0); }
+  100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
 }
 
 /* Accessibility: reduce motion */

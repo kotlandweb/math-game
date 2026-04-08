@@ -10,24 +10,24 @@ if (btn && text) {
   });
 }
 
-// Kai puslapis užsikrauna, sukuriame snaiges.
+// Kai puslapis užsikrauna, sukuriame žvaigždes.
 window.addEventListener("load", () => {
-  // Randame snaigių konteinerį.
-  const snowContainer = document.querySelector(".snow");
+  // Randame žvaigždžių konteinerį.
+  const starContainer = document.querySelector(".stars");
   // Jei konteinerio nėra, nieko nedarome.
-  if (!snowContainer) return;
+  if (!starContainer) return;
 
-  // Sukuriame 100 snaigių su atsitiktine pozicija ir greičiu.
+  // Sukuriame 100 žvaigždžių su atsitiktine pozicija ir greičiu.
   for (let i = 0; i < 100; i++) {
-    // Sukuriame vieną snaigę.
-    const snowflake = document.createElement("div");
+    // Sukuriame vieną žvaigždę.
+    const star = document.createElement("div");
     // Atsitiktinė horizontali pozicija.
-    snowflake.style.left = Math.random() * 100 + "%";
-    // Atsitiktinis kritimo greitis.
-    snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
-    // Neigiamas vėlinimas, kad snaigės matytųsi iš karto.
-    snowflake.style.animationDelay = `-${Math.random() * 12}s`;
-    // Pridedame snaigę į konteinerį.
-    snowContainer.appendChild(snowflake);
+    star.style.left = Math.random() * 100 + "%";
+    // Atsitiktinis judėjimo greitis.
+    star.style.animationDuration = (Math.random() * 5 + 8) + "s";
+    // Neigiamas vėlinimas, kad žvaigždės matytųsi iš karto.
+    star.style.animationDelay = `-${Math.random() * 12}s`;
+    // Pridedame žvaigždę į konteinerį.
+    starContainer.appendChild(star);
   }
 });

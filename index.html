@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Snaigių fonas -->
-  <div class="snow"></div>
+  <!-- Žvaigždžių fonas -->
+  <div class="stars"></div>
 
   <!-- Pagrindinis turinio konteineris -->
   <main class="wrap">
@@ -50,25 +50,25 @@
       window.location.href = "quiz.html";
     });
 
-    // Užkrovus puslapį sukuriamos snaigės.
+    // Užkrovus puslapį sukuriamos žvaigždės.
     window.addEventListener("load", () => {
-      // Randame snaigių konteinerį (div su klase "snow").
-      const snowContainer = document.querySelector(".snow");
+      // Randame žvaigždžių konteinerį (div su klase "stars").
+      const starContainer = document.querySelector(".stars");
       // Jei konteinerio nėra, tiesiog išeiname.
-      if (!snowContainer) return;
+      if (!starContainer) return;
 
-      // Sukuriame 200 snaigių.
+      // Sukuriame 200 žvaigždžių.
       for (let i = 0; i < 200; i++) {
-        // Kiekviena snaigė yra atskiras div elementas.
-        const snowflake = document.createElement("div");
+        // Kiekviena žvaigždė yra atskiras div elementas.
+        const star = document.createElement("div");
         // Atsitiktinė X pozicija.
-        snowflake.style.left = Math.random() * 100 + "%";
-        // Atsitiktinis kritimo greitis.
-        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
-        // Neigiamas vėlinimas, kad snaigės būtų matomos iš karto.
-        snowflake.style.animationDelay = `-${Math.random() * 12}s`;
-        // Pridedame snaigę į konteinerį.
-        snowContainer.appendChild(snowflake);
+        star.style.left = Math.random() * 100 + "%";
+        // Atsitiktinis judėjimo greitis.
+        star.style.animationDuration = (Math.random() * 5 + 8) + "s";
+        // Neigiamas vėlinimas, kad žvaigždės būtų matomos iš karto.
+        star.style.animationDelay = `-${Math.random() * 12}s`;
+        // Pridedame žvaigždę į konteinerį.
+        starContainer.appendChild(star);
       }
     });
   </script>
