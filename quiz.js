@@ -8,10 +8,10 @@ const TOTAL_QUESTIONS = 10;
 function buildBank() {
   const bank = [];
   // Esamas užduočių bankas: išlaikome ankstesnes generuotas užduotis
-  // 20 daugybos klausimų.
-  for (let i = 0; i < 20; i++) {
-    const a = randInt(6, 25);
-    const b = randInt(6, 25);
+  // 15 paprastų daugybos klausimų (iki 10).
+  for (let i = 0; i < 15; i++) {
+    const a = randInt(2, 10);
+    const b = randInt(2, 10);
     bank.push({
       text: `${a} × ${b} = ?`,
       answer: a * b,
@@ -19,10 +19,10 @@ function buildBank() {
     });
   }
 
-  // 10 dalybos klausimų be liekanos.
+  // 10 paprastų dalybos klausimų be liekanos.
   for (let i = 0; i < 10; i++) {
-    const b = randInt(2, 12);
-    const ans = randInt(6, 30);
+    const b = randInt(2, 9);
+    const ans = randInt(2, 10);
     const a = b * ans;
     bank.push({
       text: `${a} ÷ ${b} = ?`,
@@ -31,36 +31,31 @@ function buildBank() {
     });
   }
 
-  // 20 judėjimo uždavinių (s = v * t).
-  const vehicles = ["Automobilis", "Dviratininkas", "Traukinys", "Autobusas", "Motociklas"];
-  for (let i = 0; i < 20; i++) {
-    const v = randInt(10, 120);
-    const t = randInt(1, 6);
-    const who = vehicles[randInt(0, vehicles.length - 1)];
-    bank.push({
-      text: `${who} važiavo ${v} km/h greičiu ${t} valandas. Kiek kilometrų nuvažiavo?`,
-      answer: v * t,
-      level: "vidutinis"
-    });
-  }
-
   // Naujos 4-kl. lygio užduotys, suskirstytos pagal lygį:
-  // Patenkinamas (paprasti sudėties/atėmimo uždaviniai)
+  // Patenkinamas (paprastos sudėtis ir atėmimas)
   const patenkinamas = [
-    { text: `23 + 45 = ?`, answer: 68, level: "patenkinamas" },
-    { text: `70 - 28 = ?`, answer: 42, level: "patenkinamas" },
-    { text: `36 + 14 = ?`, answer: 50, level: "patenkinamas" },
-    { text: `81 - 33 = ?`, answer: 48, level: "patenkinamas" }
+    { text: `5 + 3 = ?`, answer: 8, level: "patenkinamas" },
+    { text: `10 - 4 = ?`, answer: 6, level: "patenkinamas" },
+    { text: `7 + 2 = ?`, answer: 9, level: "patenkinamas" },
+    { text: `9 - 3 = ?`, answer: 6, level: "patenkinamas" },
+    { text: `6 + 4 = ?`, answer: 10, level: "patenkinamas" },
+    { text: `8 - 5 = ?`, answer: 3, level: "patenkinamas" },
+    { text: `12 + 8 = ?`, answer: 20, level: "patenkinamas" },
+    { text: `15 - 6 = ?`, answer: 9, level: "patenkinamas" }
   ];
   patenkinamas.forEach((q) => bank.push(q));
 
-  // Vidutinis (daugyba / dalyba / paprasti žodžiu uždaviniai)
+  // Vidutinis (nesudėtinga daugyba ir dalyba)
   const vidutinis = [
-    { text: `8 × 7 = ?`, answer: 56, level: "vidutinis" },
-    { text: `9 × 6 = ?`, answer: 54, level: "vidutinis" },
-    { text: `48 ÷ 6 = ?`, answer: 8, level: "vidutinis" },
-    { text: `45 ÷ 9 = ?`, answer: 5, level: "vidutinis" },
-    { text: `Mokykloje yra 4 eilės po 12 mokinių. Kiek mokinių iš viso?`, answer: 48, level: "vidutinis" }
+    { text: `3 × 3 = ?`, answer: 9, level: "vidutinis" },
+    { text: `4 × 5 = ?`, answer: 20, level: "vidutinis" },
+    { text: `6 × 2 = ?`, answer: 12, level: "vidutinis" },
+    { text: `7 × 3 = ?`, answer: 21, level: "vidutinis" },
+    { text: `20 ÷ 5 = ?`, answer: 4, level: "vidutinis" },
+    { text: `16 ÷ 4 = ?`, answer: 4, level: "vidutinis" },
+    { text: `18 ÷ 3 = ?`, answer: 6, level: "vidutinis" },
+    { text: `Maišely yra 3 jablkės. Jei yra 2 maiši, kiek jablkių iš viso?`, answer: 6, level: "vidutinis" },
+    { text: `Tomas turi 12 pieštukų. Jis padali juos 3 draugams. Kiek gauna kiekvienas?`, answer: 4, level: "vidutinis" }
   ];
   vidutinis.forEach((q) => bank.push(q));
 
